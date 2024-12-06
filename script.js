@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to handle the form submission on selecting previous presenters
 function previousPresenterSelection() {
   // Get selected presenter
-  const previousPresenterSelection = Array.from(document.querySelectorAll('input[name="previousPresenter"]:checked'))
+  const previousPresenterSelection = Array.from(document.querySelectorAll("input[name='previousPresenter']:checked"))
     .map(function (checkbox) {
       return checkbox.value;
     });
@@ -145,13 +145,14 @@ document.getElementById("submitPresenter").addEventListener("click", previousPre
 // Function to handle selecting wheel
 function handleRadioSelection() {
   // Get the selected radio button value for the "radioGroup" group
-  const selectedRadio = document.querySelector('input[name="wheelSelection"]:checked');
+  const selectedRadio = document.querySelector("input[name='wheelSelection']:checked");
   if (selectedRadio) {
     console.log("Selected Radio Button Value:", selectedRadio.value);
     document.querySelector("#wheelSelectionContainer").style.display = "none";
     document.querySelector("#previousPresenterContainer").style.display = "block";
     window.wheelElement = document.querySelector("[name=" + selectedRadio.value + "]");
   } else {
+    // eslint-disable-next-line
     alert("No option selected. Please choose an option.");
   }
 }
