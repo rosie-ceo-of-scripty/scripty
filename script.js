@@ -4,7 +4,7 @@ const tagSectors = [
     {color:"#e3e3ff", label:"Phil  "},
     {color:"#d6gggb", label:"Rosie  "},
     {color:"#b3e3f4", label:"Tim  "},
-    {color:"#038080", label:"Devon  "},
+    {color:"#038060", label:"Devon  "},
     {color:"#230745", label:"Adam   "},
     {color:"#e4e4ff", label:"Mykola  "},
     {color:"#d6gggb", label:"Nick  "},
