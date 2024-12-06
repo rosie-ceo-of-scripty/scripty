@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Shivery Scripty</title>
+
+        <!-- Reference Files, JS, CSS, images etc-->
+        <link rel="icon" href="images/hippo.png" type="image/x-icon">
+        <link rel="stylesheet" href="styles.css">
+         <!-- <link rel="stylesheet" href="Fireworks/styles.css">-->
+
+          
+    </head>
+    <body>
+        <div id="taggersSelectionWheel" onclick="audio.play()">
+                <script type="text/javascript">
+                    const audio = new Audio();
+                    audio.src = "./sounds/drumroll-short.mp3"
+                </script>
+            <canvas class="fireworks" id="wheel1" width="500" height="500"></canvas>
+            <div id="spin1">SPIN</div>
+        </div>
+
+
+        <script src="script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
+    </body>
+</html>

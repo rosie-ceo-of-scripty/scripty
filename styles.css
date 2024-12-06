@@ -1,0 +1,74 @@
+body {
+  background-image: url("images/winter_gif.gif");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+/*  background-color: rgb(255, 255, 255); *//* Sets the background color to black */
+  color: white; /* Optional: sets text color to white for contrast */
+  margin-top: 50px;
+
+}
+
+h3 {
+  color: rgb(218, 218, 218); /* Change text color to blue */
+  font-size: 30px; /* Set font size */
+  position: absolute;
+  top: 20px;
+
+  z-index: 10;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  font-family: 'Old English Text MT', 'Gothic', serif;
+  letter-spacing: 5px; 
+}
+
+#taggersSelectionWheel, #developersSelectionWheel{
+    display: inline-flex;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #wheel1, #wheel2 {
+    display: block;
+    margin: 25px;
+  }
+
+  #spin1, #spin2 {
+    font: 1.5rem/0 sans-serif;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    margin: -15%;
+    background: #fff;
+    color: #fff;
+    box-shadow: 0 0 0 8px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    transition: 0.8s;
+  }
+  
+  #spin1::after, #spin2::after {
+    content: "";
+    position: absolute;
+    top: -17px;
+    border: 10px solid transparent;
+    border-bottom-color: currentColor;
+    border-top: none;
+  }
+
+  /* Bubble Fireworks below --------------------------------------- */
+
+
+
+  
+
+
+  
+  
