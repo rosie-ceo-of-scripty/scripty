@@ -12,7 +12,8 @@ const tagSectors = [
   { color: "#d6gggb", label: "Nick  " },
 ];
 
-wheelFunction(tagSectors, "#spin1", "#wheel1");
+// Only running wheel function after previous presenter is selected
+// wheelFunction(tagSectors, "#spin1", "#wheel1");
 
 function wheelFunction(sectors, buttonId, canvasId) {
   // Generate random float in range min-max:
@@ -136,7 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update window.previousPresenter
     window.previousPresenter = previousPresenterSelection.join();
     console.log("Selected Presenter:", window.previousPresenter);
-
     // Remove the selected presenter from the tagSectors array
     const updatedSectors = tagSectors.filter(
       (sector) => sector.label.trim() !== window.previousPresenter,
