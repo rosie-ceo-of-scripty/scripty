@@ -1,3 +1,5 @@
+/* eslint-disable curly */
+/* eslint-disable no-console */
 const tagSectors = [
   { color: "#020b36", label: "Damian   " },
   { color: "#ff9900", label: "Jay  " },
@@ -126,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function previousPresenterSelection() {
     // Get selected presenter
     const previousPresenterSelection = Array.from(
-      document.querySelectorAll("input[name='previousPresenter']:checked")
+      document.querySelectorAll("input[name='previousPresenter']:checked"),
     ).map(function (checkbox) {
       return checkbox.value;
     });
@@ -163,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("#previousPresenterContainer").style.display = "block";
       window.wheelElement = document.querySelector("[name=" + selectedRadio.value + "]");
     } else {
+      // eslint-disable-next-line
       alert("No option selected. Please choose an option.");
     }
   }
