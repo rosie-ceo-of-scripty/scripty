@@ -1,15 +1,15 @@
 /* eslint-disable curly */
 /* eslint-disable no-console */
 const tagSectors = [
-  { color: "#020b36", label: "Damian   " },
-  { color: "#ff9900", label: "Jay  " },
-  { color: "#e3e3ff", label: "Phil  " },
-  { color: "#d6gggb", label: "Rosie  " },
-  { color: "#b3e3f4", label: "Tim  " },
-  { color: "#038060", label: "Devon  " },
-  { color: "#230745", label: "Adam   " },
-  { color: "#e4e4ff", label: "Mykola  " },
-  { color: "#d6gggb", label: "Nick  " },
+  { color: "#B03A2E", label: "Damian  " },  // Festive Red
+  { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
+  { color: "#1ABC9C", label: "Phil  " },    // Festive Green
+  { color: "#27AE60", label: "Rosie  " },   // Christmas Tree Green
+  { color: "#F39C12", label: "Tim  " },     // Gold
+  { color: "#D35400", label: "Devon  " },   // Warm Orange
+  { color: "#16A085", label: "Adam  " },    // Dark Green
+  { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
+  { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
 ];
 
 // Only running wheel function after previous presenter is selected
@@ -55,7 +55,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     ctx.rotate(ang + arc / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "#fff";
-    ctx.font = "bold 30px sans-serif";
+    ctx.font = "bold 30px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     ctx.fillText(sector.label, rad - 10, 10);
     ctx.restore();
   };
