@@ -10,12 +10,88 @@
           
     </head>
     <body>
-        <div id="taggersSelectionWheel" onclick="audio.play()">
+        <div id="wheelSelectionContainer">
+            <h2>Step 1: Choose your wheel</h2>
+            <p>Select the desired Scripty wheel.</p>
+            <div>
+                <form id="wheelSelection">
+                    <label>
+                        <input type="radio" name="wheelSelection" value="showStandUp">
+                        Stand Up
+                    </label>
+                <!--
+                    <br>
+                    <label>
+                        <input type="radio" name="wheelSelection" value="showBothWheels">
+                        Stand Up and Team Meeting
+                    </label><br>
+                -->
+            
+                    <button type="button" id="submitWheel">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div id="previousPresenterContainer" style="display:none;">
+            <h2>Step 2: Who presented last time?</h2>
+            <p>Select the previous presenter using the options below.</p>
+            <div>
+                <form id="previousPresenter">
+                    <div>
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Adam">
+                            Adam
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Damian">
+                            Damian
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Devon">
+                            Devon
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Jay">
+                            Jay
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Mykola">
+                            Mykola
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Nick">
+                            Nick
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Phil">
+                            Phil
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Rosie">
+                            Rosie
+                        </label><br>
+                    
+                        <label>
+                            <input type="radio" name="previousPresenter" value="Tim">
+                            Tim
+                        </label><br>
+                    </div>                    
+                    <button type="button" id="submitPresenter">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div style="display:none;" name="showStandUp" id="taggersSelectionWheel" onclick="audio.play()">
                 <script type="text/javascript">
                     const audio = new Audio();
                     audio.src = "./sounds/drumroll-short.mp3"
                 </script>
-            <canvas class="fireworks" id="wheel1" width="500" height="500"></canvas>
+            <canvas id="wheel1" width="500" height="500"></canvas>
             <div id="spin1">SPIN</div>
         </div>
 
