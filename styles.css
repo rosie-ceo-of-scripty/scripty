@@ -5,8 +5,12 @@ body {
   background-repeat: no-repeat;
 /*  background-color: rgb(255, 255, 255); *//* Sets the background color to black */
   color: white; /* Optional: sets text color to white for contrast */
+  /* Delete */
+  /* Remove these ones */
   margin-top: 50px;
-
+  padding: 20px;
+  border: 10px solid black;
+  /* End delete */
 }
 
 h3 {
