@@ -3,5 +3,15 @@
         {
             "path": "."
         }
-    ]
+    ],
+    "launch": {
+        "configurations": [
+            {
+                "type": "chrome",
+                "name": "http://127.0.0.1:3000/scripty_v2.1.html",
+                "request": "launch",
+                "url": "http://127.0.0.1:3000/scripty_v2.1.html"
+            }
+        ]
+    }
 }
