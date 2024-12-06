@@ -125,36 +125,6 @@ function wheelFunction(sectors, buttonId, canvasId) {
 // PREVIOUS PRESENTERS
 // Getting selection from radio buttons
 document.addEventListener("DOMContentLoaded", function () {
-  // Function to handle the form submission on selecting previous presenters
-  function previousPresenterSelection() {
-    // Get selected presenter
-    const previousPresenterSelection = Array.from(
-      document.querySelectorAll("input[name='previousPresenter']:checked"),
-    ).map(function (checkbox) {
-      return checkbox.value;
-    });
-
-    // Update window.previousPresenter
-    window.previousPresenter = previousPresenterSelection.join();
-    console.log("Selected Presenter:", window.previousPresenter);
-    // Remove the selected presenter from the tagSectors array
-    const updatedSectors = tagSectors.filter(
-      (sector) => sector.label.trim() !== window.previousPresenter,
-    );
-
-    // Redraw the wheel with updated sectors
-    wheelFunction(updatedSectors, "#spin1", "#wheel1");
-
-    // Show the wheel and hide the presenter selection
-    document.querySelector("#previousPresenterContainer").style.display = "none";
-    window.wheelElement.style.display = "flex";
-    // Set the text back to "SPIN" after the previous presenter is removed
-    document.querySelector("#spin1").textContent = "SPIN"; // Ensure it says "SPIN" again after re-rendering
-  }
-
-  // Attach event listener to the submit button
-  document.getElementById("submitPresenter").addEventListener("click", previousPresenterSelection);
-
   // Function to handle selecting wheel
   function handleRadioSelection() {
     // Get the selected radio button value for the "radioGroup" group
@@ -169,7 +139,40 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("No option selected. Please choose an option.");
     }
   }
-
-  // Attach event listener to the submit button for selecting wheel
+  // Function to handle the form submission on selecting previous presenters
+  function previousPresenterSelection() {
+    // Get selected presenter
+    const previousPresenterSelection = Array.from(
+      document.querySelectorAll("input[name='previousPresenter']:checked"),
+    ).map(function (checkbox) {
+      return checkbox.value;
+    });
+    // Check if no presenter is selected
+    if (previousPresenterSelection.length === 0) {
+      // eslint-disable-next-line
+      alert("Please select a presenter before submitting.");
+      return; // Prevent form submission if no presenter is selected
+    }
+    // Update window.previousPresenter
+    window.previousPresenter = previousPresenterSelection.join();
+    console.log("Selected Presenter:", window.previousPresenter);
+    // Remove the selected presenter from the tagSectors array
+    const updatedSectors = tagSectors.filter(
+      (sector) => sector.label.trim() !== window.previousPresenter,
+    );
+    // Redraw the wheel with updated sectors
+    wheelFunction(updatedSectors, "#spin1", "#wheel1");
+    // Reset previous presenter
+    window.previousPresenter = null;
+    // Show the wheel and hide the presenter selection
+    document.querySelector("#previousPresenterContainer").style.display = "none";
+    window.wheelElement.style.display = "flex";
+    // Set the text back to "SPIN" after the previous presenter is removed
+    document.querySelector("#spin1").textContent = "SPIN"; // Ensure it says "SPIN" again after re-rendering
+  }
+  // Adding event listeners to buttons
+  // Wheel
   document.getElementById("submitWheel").addEventListener("click", handleRadioSelection);
+  // Remove previous presenter
+  document.getElementById("submitPresenter").addEventListener("click", previousPresenterSelection);
 });
