@@ -53,7 +53,6 @@ function wheelFunction(sectors, buttonId, canvasId) {
     ctx.textAlign = "right";
     ctx.fillStyle = "#fff";
     ctx.font = "bold 30px sans-serif";
-    ctx.fontFamily = "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
     ctx.fillText(sector.label, rad - 10, 10);
     ctx.restore();
   };
