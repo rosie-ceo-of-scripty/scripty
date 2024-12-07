@@ -1,5 +1,4 @@
 /* eslint-disable curly */
-/* eslint-disable no-console */
 const tagSectors = [
   { color: "#B03A2E", label: "Damian  " },  // Festive Red
   { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
@@ -12,6 +11,17 @@ const tagSectors = [
   { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
 ];
 
+// Team meeting taggers
+const teamMeetingTagSectors = [
+  { color: "#B03A2E", label: "Damian  " },  // Festive Red
+  { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
+  { color: "#1ABC9C", label: "Phil  " },    // Festive Green
+  { color: "#27AE60", label: "Rosie  " },   // Christmas Tree Green
+  { color: "#F39C12", label: "Tim  " },     // Gold
+  { color: "#D35400", label: "Devon  " },   // Warm Orange
+];
+
+// Team meeting developers
 const devSectors = [
   { color: "#16A085", label: "Adam  " },    // Dark Green
   { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
@@ -154,13 +164,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const updatedDevSectors = devSectors.filter(function (sector) {
       return !previousPresenterSelection.includes(sector.label.trim());
     });
+    // Remove the selected presenter from the tagSectors array
+    const updatedTeamMeetingTagSectors = teamMeetingTagSectors.filter(function (sector) {
+      return !previousPresenterSelection.includes(sector.label.trim());
+    });
     // Redraw the wheel with updated sectors
-    wheelFunction(updatedTagSectors, "#spin1", "#wheel1");
-    document.querySelector("#taggersSelectionWheel").style.display = "flex";
-    // Second wheel for team meetings
+    if(document.querySelector("#taggersSelectionWheel")){
+      wheelFunction(updatedTagSectors, "#spin1", "#wheel1");
+      document.querySelector("#taggersSelectionWheel").style.display = "flex";
+    }
+    // Second and third wheels for team meetings
     if(document.querySelector("#devSelectionWheel")){
       wheelFunction(updatedDevSectors, "#spin2", "#wheel2");
+      wheelFunction(updatedTeamMeetingTagSectors, "#spin3", "#wheel3");
       document.querySelector("#devSelectionWheel").style.display = "flex";
+      document.querySelector("#taggersTeamMeetingSelectionWheel").style.display = "flex";
     }
     // Reset previous presenter
     window.previousPresenter = null;
