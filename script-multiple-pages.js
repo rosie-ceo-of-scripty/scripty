@@ -156,10 +156,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     // Redraw the wheel with updated sectors
     wheelFunction(updatedTagSectors, "#spin1", "#wheel1");
-    wheelFunction(updatedDevSectors, "#spin2", "#wheel2");
     document.querySelector("#taggersSelectionWheel").style.display = "flex";
     // Second wheel for team meetings
     if(document.querySelector("#devSelectionWheel")){
+      wheelFunction(updatedDevSectors, "#spin2", "#wheel2");
       document.querySelector("#devSelectionWheel").style.display = "flex";
     }
     // Reset previous presenter
