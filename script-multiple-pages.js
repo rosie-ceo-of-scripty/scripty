@@ -186,8 +186,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector("#devSelectionWheel").style.display = "flex";
       document.querySelector("#taggersTeamMeetingSelectionWheel").style.display = "flex";
     }
-    // Reset previous presenter
-    window.previousPresenter = null;
     // Show the wheel and hide the presenter selection
     document.querySelector("#formContainer").style.display = "none";
     // Set the text back to "SPIN" after the previous presenter is removed
@@ -196,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
       spinner.textContent = "SPIN";
     });
   }
-  // Adding event listeners to buttons
-  // Wheel
+  // Adding event listeners to button on submitting previous presenter
   document.getElementById("submitPresenter").addEventListener("click", previousPresenterSelection);
 });
