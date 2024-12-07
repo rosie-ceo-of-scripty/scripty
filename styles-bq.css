@@ -118,6 +118,7 @@ h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 16px;
+  color: #ff6600;
 }
 
 /* Paragraphs */
@@ -150,7 +151,7 @@ button, a.button, a#home {
   font-weight: bold;
   font-family: inherit;
   color: #fff;
-  background-color: #ff6600; /* Blue background */
+  background-color: #ff6600;
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -192,7 +193,7 @@ button, a.button {
 }
 
 button:hover, a.button:hover, #home:hover {
-  background-color: #ff8433; /* Darker blue on hover */
+  background-color: #ff8433;
 }
 
 button:active, a.button:hover, #home:hover {
