@@ -156,6 +156,12 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please select a presenter before submitting.");
       return; // Prevent form submission if no presenter is selected
     }
+    // Check if too many presenters have been selected
+    if (previousPresenterSelection.length > 2) {
+      // eslint-disable-next-line
+      alert("Too many presenters selected. Select one tagger and one member of the development team.");
+      return; // Prevent form submission if no presenter is selected
+    }
     // Remove the selected presenter from the tagSectors array
     const updatedTagSectors = tagSectors.filter(function (sector) {
       return !previousPresenterSelection.includes(sector.label.trim());
