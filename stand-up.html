@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Scripty</title>
+        <script src="script-multiple-pages.js"></script> 
+        <link rel="stylesheet" href="styles-multiple-pages.css"></link>
+    </head>
+    <body>
+        <nav>
+            <a id="home" href="home.html">Home</a>
+        </nav>
+        <div id="content">
+            <div id="formContainer">
+                <h1>Step 1: Who just led the Stand Up?</h1>
+                <p>Select an option below.</p>
+                    <div>
+                        <form id="previousPresenter">
+                            <div>
+                                <label><input type="radio" name="previousPresenter" value="Adam">Adam</label>
+                                <label><input type="radio" name="previousPresenter" value="Damian">Damian</label>
+                                <label><input type="radio" name="previousPresenter" value="Devon">Devon</label>
+                                <label><input type="radio" name="previousPresenter" value="Jay">Jay</label>
+                                <label><input type="radio" name="previousPresenter" value="Mykola">Mykola</label>
+                                <label><input type="radio" name="previousPresenter" value="Nick">Nick</label>
+                                <label><input type="radio" name="previousPresenter" value="Phil">Phil</label>
+                                <label><input type="radio" name="previousPresenter" value="Rosie">Rosie</label>
+                                <label><input type="radio" name="previousPresenter" value="Tim">Tim</label>
+                            </div>                    
+                            <button type="button" id="submitPresenter">Submit</button>
+                        </form>
+                    </div>
+            </div>
+            <div class="wheel" id="taggersSelectionWheel" style="display:none;">
+                <canvas id="wheel1" width="500" height="500"></canvas>
+                <div class="spin" id="spin1">SPIN</div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
+    </body>
+</html>
