@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (previousPresenterSelection.length > 2) {
       // eslint-disable-next-line
       alert("Too many presenters selected. Select one tagger and one member of the development team.");
-      return; // Prevent form submission if no presenter is selected
+      return;
     }
     // Remove the selected presenter from the tagSectors array
     const updatedTagSectors = tagSectors.filter(function (sector) {
