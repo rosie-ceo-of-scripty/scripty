@@ -1,0 +1,229 @@
+body {
+  background-image: url("images/bd-tools-alive.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav {
+  display: fixed;
+  top: 0;
+  left: 0;
+  margin-bottom: 50px;
+}
+
+#content {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  height: 75vh;
+  color: #333;
+  justify-content: space-around;
+}
+
+.wheel {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 25px;
+  }
+
+.spin {
+  font: 1.5rem/0 sans-serif;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  margin: -15%;
+  background: #fff;
+  color: #fff;
+  box-shadow: 0 0 0 8px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  transition: 0.8s;
+}
+  
+.spin::after {
+  content: "";
+  position: absolute;
+  top: -17px;
+  border: 10px solid transparent;
+  border-bottom-color: currentColor;
+  border-top: none;
+  border-radius: 50%;
+}
+
+/* Ensure the container is centrally aligned */
+#wheelContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  position: relative;
+}
+
+/* Style the canvas for the wheel */
+.spin {
+  position: absolute;
+  top: 65%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 30%;       /* Set the width to make it circular */
+  height: 30%;      /* Height matches width for a perfect circle */
+  border-radius: 50%; /* Makes the button circular */
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ff9900;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a slight shadow for depth */
+  border: 10px solid white;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+
+.spin:active {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect on click */
+  transform: translate(-50%, -50%) scale(0.95); /* Adds a slight press effect */
+}
+
+/* Center alignment for containers */
+#formContainer {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff; /* White background for contrast */
+  border-radius: 15px;       /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  max-width: 400px;          /* Limit width for better layout */
+  margin: auto;
+}
+
+/* Headings */
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #e30614;
+}
+
+/* Paragraphs */
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Form elements styling */
+form {
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Labels and inputs */
+label {
+  display: block;
+  font-size: 16px;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Buttons */
+/* Generic styles */
+button, a.button, a#home {
+  font-weight: bold;
+  font-family: inherit;
+  color: #fff;
+  background-color: #e30614;
+  border: none;
+  border-radius: 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button, a.button {
+  display: block;
+  width: 75%;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+/* Home link styles */
+#home {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#home::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-image: url('images/home-white.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+button:hover, a.button:hover, #home:hover {
+  background-color: #fff;
+  color: #e30614;
+  border: 1px solid #e30614;
+}
+
+/* Change background image on hover */
+#home:hover::before {
+  background-image: url("images/home-bd.png");
+}
+
+button:active, a.button:hover, #home:hover {
+  transform: scale(0.98); /* Slight press effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  #formContainer {
+      max-width: 90%;
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 20px;
+  }
+
+  p, label {
+      font-size: 16px;
+  }
+
+  button {
+      font-size: 16px;
+  }
+}

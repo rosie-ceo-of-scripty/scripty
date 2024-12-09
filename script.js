@@ -1,18 +1,21 @@
+/* eslint-disable curly */
+/* eslint-disable no-console */
 const tagSectors = [
-    {color:"#020b36", label:"Damian   "},
-    {color:"#ff9900", label:"Jay  "},
-    {color:"#e3e3ff", label:"Phil  "},
-    {color:"#d6gggb", label:"Rosie  "},
-    {color:"#b3e3f4", label:"Tim  "},
-    {color:"#038060", label:"Devon  "},
-    {color:"#230745", label:"Adam   "},
-    {color:"#e4e4ff", label:"Mykola  "},
-    {color:"#d6gggb", label:"Nick  "},
-  ];
+  { color: "#B03A2E", label: "Damian  " },  // Festive Red
+  { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
+  { color: "#1ABC9C", label: "Phil  " },    // Festive Green
+  { color: "#27AE60", label: "Rosie  " },   // Christmas Tree Green
+  { color: "#F39C12", label: "Tim  " },     // Gold
+  { color: "#D35400", label: "Devon  " },   // Warm Orange
+  { color: "#16A085", label: "Adam  " },    // Dark Green
+  { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
+  { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
+];
 
-wheelFunction(tagSectors, "#spin1", "#wheel1");
+// Only running wheel function after previous presenter is selected
+// wheelFunction(tagSectors, "#spin1", "#wheel1");
 
-function wheelFunction(sectors, buttonId, canvasId)	{
+function wheelFunction(sectors, buttonId, canvasId) {
   // Generate random float in range min-max:
   const rand = (m, M) => Math.random() * (M - m) + m;
 
@@ -24,19 +27,19 @@ function wheelFunction(sectors, buttonId, canvasId)	{
   const PI = Math.PI;
   const TAU = 2 * PI;
   const arc = TAU / tot;
-  const friction = 0.991;  // 0.995=soft, 0.99=mid, 0.98=hard
-  const angVelMin = 0.002; // Below that number will be treated as a stop
-  let angVelMax = 0; // Random ang.vel. to accelerate to 
+  const friction = 0.98; // Increased friction for faster deceleration
+  const angVelMin = 0.005; // Minimum speed to consider it stopped
+  let angVelMax = 0; // Random ang.vel. to accelerate to
   let angVel = 0;    // Current angular velocity
   let ang = 0;       // Angle rotation in radians
   let isSpinning = false;
   let isAccelerating = false;
   let animFrame = null; // Engine's requestAnimationFrame
 
-  //* Get index of current sector */
+  // Get index of current sector
   const getIndex = () => Math.floor(tot - ang / TAU * tot) % tot;
-  
-  //* Draw sectors and prizes texts to canvas */
+
+  // Draw sectors and prizes texts to canvas
   const drawSector = (sector, i) => {
     const ang = arc * i;
     ctx.save();
@@ -52,22 +55,26 @@ function wheelFunction(sectors, buttonId, canvasId)	{
     ctx.rotate(ang + arc / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "#fff";
-    ctx.font = "bold 30px sans-serif";
+    ctx.font = "bold 30px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     ctx.fillText(sector.label, rad - 10, 10);
-    //
     ctx.restore();
   };
-  
-  //* CSS rotate CANVAS Element */
+
+  // CSS rotate CANVAS Element
   const rotate = () => {
     const sector = sectors[getIndex()];
     ctx.canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
-    elSpin.textContent = !angVel ? "SPIN" : sector.label;
-    elSpin.style.background = sector.color;
+    if (!isSpinning) {
+      // Update text when finished spinning
+      elSpin.textContent = sector.label.trim(); // Show the name of the selected sector
+    } else {
+      // Update text to the sector label while spinning
+      elSpin.textContent = sector.label.trim();
+    }
+    elSpin.style.background = sector.color; // Update background color based on current sector
   };
 
   const frame = () => {
-
     if (!isSpinning) return;
 
     if (angVel >= angVelMax) isAccelerating = false;
@@ -76,190 +83,96 @@ function wheelFunction(sectors, buttonId, canvasId)	{
     if (isAccelerating) {
       angVel ||= angVelMin; // Initial velocity kick
       angVel *= 1.06; // Accelerate
-    }
-    
-    // Decelerate
-    else {
-      isAccelerating = false;
-      angVel *= friction; // Decelerate by friction  
+    } else {
+      // Decelerate
+      angVel *= friction; // Decelerate by friction
 
       // SPIN END:
       if (angVel < angVelMin) {
         isSpinning = false;
         angVel = 0;
         cancelAnimationFrame(animFrame);
+        // Final rotation adjustment after spin ends (stop updating)
+        rotate(); // Apply the final rotation once, without further updates
       }
     }
 
     ang += angVel; // Update angle
-    ang %= TAU;    // Normalize angle
+    ang %= TAU;    // Normalize angle to keep it within range
     rotate();      // CSS rotate!
   };
 
   const engine = () => {
     frame();
-    animFrame = requestAnimationFrame(engine)
+    animFrame = requestAnimationFrame(engine);
   };
 
   elSpin.addEventListener("click", () => {
     if (isSpinning) return;
     isSpinning = true;
     isAccelerating = true;
-    angVelMax = rand(0.25, 0.40);
+    angVelMax = rand(0.25, 0.40); // Random max speed to accelerate to
+    elSpin.textContent = "SPIN";  // Show "SPIN" initially before spinning
     engine(); // Start engine!
   });
 
   // INIT!
   sectors.forEach(drawSector);
+  elSpin.textContent = "SPIN";  // Show "SPIN" before any interaction
   rotate(); // Initial rotation
 }
 
-
-//Fireworks below ----------------------------------------------------
-
-window.human = false;
-
-var canvasEl = document.querySelector('.fireworks');
-var ctx = canvasEl.getContext('2d');
-var numberOfParticules = 30;
-var pointerX = 0;
-var pointerY = 0;
-var tap = ('ontouchstart' in window || navigator.msMaxTouchPoints) ? 'touchstart' : 'mousedown';
-var colors = ['#FF1461', '#18FF92', '#5A87FF', '#FBF38C'];
-
-function setCanvasSize() {
-  canvasEl.width = window.innerWidth * 2;
-  canvasEl.height = window.innerHeight * 2;
-  canvasEl.style.width = window.innerWidth + 'px';
-  canvasEl.style.height = window.innerHeight + 'px';
-  canvasEl.getContext('2d').scale(2, 2);
-}
-
-function updateCoords(e) {
-  pointerX = e.clientX || e.touches[0].clientX;
-  pointerY = e.clientY || e.touches[0].clientY;
-}
-
-function setParticuleDirection(p) {
-  var angle = anime.random(0, 360) * Math.PI / 180;
-  var value = anime.random(50, 180);
-  var radius = [-1, 1][anime.random(0, 1)] * value;
-  return {
-    x: p.x + radius * Math.cos(angle),
-    y: p.y + radius * Math.sin(angle)
+// PREVIOUS PRESENTERS
+// Getting selection from radio buttons
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to handle selecting wheel
+  function handleRadioSelection() {
+    // Get the selected radio button value for the "radioGroup" group
+    const selectedRadio = document.querySelector("input[name='wheelSelection']:checked");
+    if (selectedRadio) {
+      console.log("Selected Radio Button Value:", selectedRadio.value);
+      document.querySelector("#wheelSelectionContainer").style.display = "none";
+      document.querySelector("#previousPresenterContainer").style.display = "block";
+      window.wheelElement = document.querySelector("[name=" + selectedRadio.value + "]");
+    } else {
+      // eslint-disable-next-line
+      alert("No option selected. Please choose an option.");
+    }
   }
-}
-
-function createParticule(x,y) {
-  var p = {};
-  p.x = x;
-  p.y = y;
-  p.color = colors[anime.random(0, colors.length - 1)];
-  p.radius = anime.random(16, 32);
-  p.endPos = setParticuleDirection(p);
-  p.draw = function() {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true);
-    ctx.fillStyle = p.color;
-    ctx.fill();
+  // Function to handle the form submission on selecting previous presenters
+  function previousPresenterSelection() {
+    // Get selected presenter
+    const previousPresenterSelection = Array.from(
+      document.querySelectorAll("input[name='previousPresenter']:checked"),
+    ).map(function (checkbox) {
+      return checkbox.value;
+    });
+    // Check if no presenter is selected
+    if (previousPresenterSelection.length === 0) {
+      // eslint-disable-next-line
+      alert("Please select a presenter before submitting.");
+      return; // Prevent form submission if no presenter is selected
+    }
+    // Update window.previousPresenter
+    window.previousPresenter = previousPresenterSelection.join();
+    console.log("Selected Presenter:", window.previousPresenter);
+    // Remove the selected presenter from the tagSectors array
+    const updatedSectors = tagSectors.filter(
+      (sector) => sector.label.trim() !== window.previousPresenter,
+    );
+    // Redraw the wheel with updated sectors
+    wheelFunction(updatedSectors, "#spin1", "#wheel1");
+    // Reset previous presenter
+    window.previousPresenter = null;
+    // Show the wheel and hide the presenter selection
+    document.querySelector("#previousPresenterContainer").style.display = "none";
+    window.wheelElement.style.display = "flex";
+    // Set the text back to "SPIN" after the previous presenter is removed
+    document.querySelector("#spin1").textContent = "SPIN"; // Ensure it says "SPIN" again after re-rendering
   }
-  return p;
-}
-
-function createCircle(x,y) {
-  var p = {};
-  p.x = x;
-  p.y = y;
-  p.color = '#FFF';
-  p.radius = 0.1;
-  p.alpha = .5;
-  p.lineWidth = 6;
-  p.draw = function() {
-    ctx.globalAlpha = p.alpha;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, true);
-    ctx.lineWidth = p.lineWidth;
-    ctx.strokeStyle = p.color;
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-  }
-  return p;
-}
-
-function renderParticule(anim) {
-  for (var i = 0; i < anim.animatables.length; i++) {
-    anim.animatables[i].target.draw();
-  }
-}
-
-function animateParticules(x, y) {
-  var circle = createCircle(x, y);
-  var particules = [];
-  for (var i = 0; i < numberOfParticules; i++) {
-    particules.push(createParticule(x, y));
-  }
-  anime.timeline().add({
-    targets: particules,
-    x: function(p) { return p.endPos.x; },
-    y: function(p) { return p.endPos.y; },
-    radius: 0.1,
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: renderParticule
-  })
-    .add({
-    targets: circle,
-    radius: anime.random(80, 160),
-    lineWidth: 0,
-    alpha: {
-      value: 0,
-      easing: 'linear',
-      duration: anime.random(600, 800),  
-    },
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: renderParticule,
-    offset: 0
-  });
-}
-
-var render = anime({
-  duration: Infinity,
-  update: function() {
-    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-  }
+  // Adding event listeners to buttons
+  // Wheel
+  document.getElementById("submitWheel").addEventListener("click", handleRadioSelection);
+  // Remove previous presenter
+  document.getElementById("submitPresenter").addEventListener("click", previousPresenterSelection);
 });
-
-
-
-document.getElementById("wheel1").addEventListener("click",function(e){
-  window.human = true;
-  render.play();
-  updateCoords(e);
-  animateParticules(pointerX, pointerY);
-}, false);
-
-document.getElementById("wheel1").addEventListener("click",function(e){
-  window.human = true;
-  render.play();
-  updateCoords(e);
-  animateParticules(pointerX, pointerY);
-}, false);
-
-var centerX = window.innerWidth / 2;
-var centerY = window.innerHeight / 2;
-
-
-setCanvasSize();
-window.addEventListener('resize', setCanvasSize, false);
-
-//FIREWORKS END ---------------------------------------------------
-
-// Audio
-
-document.getElementById("spin1").addEventListener("click", function() {
-  var audio = document.getElementById("myAudio");
-  audio.volume = 1.0; // Set volume to 100%
-  audio.play(); // Play the audio file
-});
-

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Scripty</title>
+        <script src="script-multiple-pages.js"></script>
+        <link rel="stylesheet" href="styles-casto.css"></link>
+        <link rel="icon" href="images/kf.png" type="image/x-icon">
+    </head>
+    <body>
+        <nav>
+            <a id="home" href="home.html">Home</a>
+        </nav>
+        <div id="content">
+            <div id="formContainer">
+                <h1>Step 2: Who presented at the last team meeeting?</h1>
+                <p>Select the previous presenters using the checkboxes below.</p>
+                <div>
+                    <form id="previousPresenter">
+                        <div>
+                            <label><input type="checkbox" name="previousPresenter" value="Adam">Adam</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Damian">Damian</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Devon">Devon</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Jay">Jay</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Mykola">Mykola</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Nick">Nick</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Phil">Phil</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Rosie">Rosie</label>
+                            <label><input type="checkbox" name="previousPresenter" value="Tim">Tim</label>
+                        </div>                    
+                        <button type="button" id="submitPresenter">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class= "wheel" id="taggersTeamMeetingSelectionWheel" style="display:none;">
+                <canvas id="wheel3" width="500" height="500"></canvas>
+                <div class="spin" id="spin3">SPIN</div>
+            </div>
+            <div class="wheel" id="devSelectionWheel" style="display:none;">
+                <canvas id="wheel2" width="500" height="500"></canvas>
+                <div class="spin" id="spin2">SPIN</div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
+    </body>
+</html>
