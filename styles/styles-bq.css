@@ -1,5 +1,5 @@
 body {
-  background-image: url("images/castorama-tools-alive.webp");
+  background-image: url("/images/bq-tools-alive.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -118,7 +118,7 @@ h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 16px;
-  color: #0078d7;
+  color: #ff6600;
 }
 
 /* Paragraphs */
@@ -151,7 +151,7 @@ button, a.button, a#home {
   font-weight: bold;
   font-family: inherit;
   color: #fff;
-  background-color: #0078d7;
+  background-color: #ff6600;
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -187,13 +187,13 @@ button, a.button {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-image: url('images/home-white.png');
+  background-image: url('/images/home-white.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 button:hover, a.button:hover, #home:hover {
-  background-color: #3393df;
+  background-color: #ff8433;
 }
 
 button:active, a.button:hover, #home:hover {

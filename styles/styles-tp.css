@@ -1,5 +1,5 @@
 body {
-  background-image: url("images/bd-tools-alive.webp");
+  background-image: url("/images/tp-tools-alive.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -118,7 +118,7 @@ h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 16px;
-  color: #e30614;
+  color: #000;
 }
 
 /* Paragraphs */
@@ -150,10 +150,10 @@ input[type="radio"] {
 button, a.button, a#home {
   font-weight: bold;
   font-family: inherit;
-  color: #fff;
-  background-color: #e30614;
+  color: #000;
+  background-color: #ffe500;
   border: none;
-  border-radius: 0px;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   margin-top: 20px;
@@ -187,20 +187,13 @@ button, a.button {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-image: url('images/home-white.png');
+  background-image: url('/images/home.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 button:hover, a.button:hover, #home:hover {
-  background-color: #fff;
-  color: #e30614;
-  border: 1px solid #e30614;
-}
-
-/* Change background image on hover */
-#home:hover::before {
-  background-image: url("images/home-bd.png");
+  background-color: #ffd800;
 }
 
 button:active, a.button:hover, #home:hover {

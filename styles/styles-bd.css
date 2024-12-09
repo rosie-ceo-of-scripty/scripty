@@ -1,36 +1,36 @@
 body {
-  background-image: url("images/fireplace.gif");
+  background-image: url("/images/bd-tools-alive.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  display: flex;
-  justify-content: space-around;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav {
+  display: fixed;
+  top: 0;
+  left: 0;
+  margin-bottom: 50px;
+}
+
+#content {
+  display: flex;
   margin: 0;
   padding: 0;
   align-items: center;
-  height: 100vh;
+  height: 75vh;
   color: #333;
+  justify-content: space-around;
 }
 
-#taggersSelectionWheel, #developersSelectionWheel{
-    display: inline-flex;
+.wheel {
+    display: block;
     position: relative;
     overflow: hidden;
+    margin: 25px;
   }
 
-#taggersSelectionWheel {
-  display: flex;
-  position: relative;
-  overflow: hidden;
-}
-
-#wheel1, #wheel2 {
-  display: block;
-  margin: 25px;
-}
-
-#spin1, #spin2 {
+.spin {
   font: 1.5rem/0 sans-serif;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   user-select: none;
@@ -51,7 +51,7 @@ body {
   transition: 0.8s;
 }
   
-#spin1::after, #spin2::after {
+.spin::after {
   content: "";
   position: absolute;
   top: -17px;
@@ -71,13 +71,7 @@ body {
 }
 
 /* Style the canvas for the wheel */
-#wheel1 {
-  display: block;
-  margin: 0 auto; /* Centrally align if container alignment fails */
-}
-
-/* Style for the spin button */
-#spin1 {
+.spin {
   position: absolute;
   top: 65%;
   left: 65%;
@@ -103,14 +97,13 @@ body {
   font-size: 1.5em;
 }
 
-#spin1:active {
+.spin:active {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Shadow effect on click */
   transform: translate(-50%, -50%) scale(0.95); /* Adds a slight press effect */
 }
 
 /* Center alignment for containers */
-#wheelSelectionContainer, 
-#previousPresenterContainer {
+#formContainer {
   text-align: center;
   padding: 20px;
   background-color: #ffffff; /* White background for contrast */
@@ -121,10 +114,11 @@ body {
 }
 
 /* Headings */
-h2 {
+h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 16px;
+  color: #e30614;
 }
 
 /* Paragraphs */
@@ -152,41 +146,76 @@ input[type="radio"] {
 }
 
 /* Buttons */
-button {
-  display: block;
-  width: 100%;
-  padding: 10px 15px;
-  font-size: 16px;
+/* Generic styles */
+button, a.button, a#home {
   font-weight: bold;
   font-family: inherit;
   color: #fff;
-  background-color: #007bff; /* Blue background */
+  background-color: #e30614;
   border: none;
-  border-radius: 10px;
+  border-radius: 0px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   margin-top: 20px;
   transition: background-color 0.3s, transform 0.2s;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+button, a.button {
+  display: block;
+  width: 75%;
+  padding: 10px 15px;
+  font-size: 16px;
 }
 
-button:active {
-  transform: scale(0.95); /* Slight press effect */
+/* Home link styles */
+#home {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#home::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-image: url('/images/home-white.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+button:hover, a.button:hover, #home:hover {
+  background-color: #fff;
+  color: #e30614;
+  border: 1px solid #e30614;
+}
+
+/* Change background image on hover */
+#home:hover::before {
+  background-image: url("/images/home-bd.png");
+}
+
+button:active, a.button:hover, #home:hover {
+  transform: scale(0.98); /* Slight press effect */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive design for smaller screens */
 @media (max-width: 600px) {
-  #wheelSelectionContainer, 
-  #previousPresenterContainer {
+  #formContainer {
       max-width: 90%;
       padding: 15px;
   }
 
-  h2 {
+  h1 {
       font-size: 20px;
   }
 
