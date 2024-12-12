@@ -157,9 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.previousPresenter = previousPresenterSelection.join();
     console.log("Selected Presenter:", window.previousPresenter);
     // Remove the selected presenter from the tagSectors array
-    const updatedSectors = tagSectors.filter(
-      (sector) => sector.label.trim() !== window.previousPresenter,
-    );
+    const updatedSectors = tagSectors.filter(function (sector) {
+      return !previousPresenterSelection.includes(sector.label.trim());
+    });
     // Redraw the wheel with updated sectors
     wheelFunction(updatedSectors, "#spin1", "#wheel1");
     // Reset previous presenter
