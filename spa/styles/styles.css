@@ -70,12 +70,6 @@ body {
   position: relative;
 }
 
-/* Style the canvas for the wheel */
-#wheel1 {
-  /*display: block; */
-  /* margin: 0 auto; /* Centrally align if container alignment fails */
-}
-
 #spin1 {
   position: absolute;
   top: 65%;
