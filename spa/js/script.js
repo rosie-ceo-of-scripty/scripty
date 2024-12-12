@@ -1,5 +1,9 @@
 /* eslint-disable curly */
 /* eslint-disable no-console */
+
+
+
+/* Standard colours. Currently replaced with Liverpool colours for Nick. Can be uncommented and the below Nick section deleted to revert
 const tagSectors = [
   { color: "#B03A2E", label: "Damian  " },  // Festive Red
   { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
@@ -11,6 +15,23 @@ const tagSectors = [
   { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
   { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
 ];
+*/
+
+const tagSectors = [
+  { color: "#D00027", label: "Damian  " },  // Liverpool Red
+  { color: "#00967F", label: "Jay  " },     // Liverpool Aqua
+  { color: "#FEE942", label: "Phil  " },    // Liverpool Gold
+  { color: "#D00027", label: "Rosie  " },   // Liverpool Red
+  { color: "#00967F", label: "Tim  " },     // Liverpool Aqua
+  { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
+  { color: "#D00027", label: "Adam  " },    // Liverpool Red
+  { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
+  { color: "#FEE942", label: "Nick  " },    // Liverpool Gold
+];
+
+
+
+
 
 // Only running wheel function after previous presenter is selected
 // wheelFunction(tagSectors, "#spin1", "#wheel1");
