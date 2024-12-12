@@ -1,4 +1,5 @@
 /* eslint-disable curly */
+/* NORMAL COLOURS | Temp changed to Nick's colours. Uncomment and remove Nick's below section to revert
 const tagSectors = [
   { color: "#B03A2E", label: "Damian  " },  // Festive Red
   { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
@@ -10,22 +11,35 @@ const tagSectors = [
   { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
   { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
 ];
+NORMAL COLOURS END */
+/* Nick's colours for the wheel */
+const tagSectors = [
+  { color: "#D00027", label: "Damian  " },  // Liverpool Red
+  { color: "#00967F", label: "Jay  " },     // Liverpool Aqua
+  { color: "#FEE942", label: "Phil  " },    // Liverpool Gold
+  { color: "#D00027", label: "Rosie  " },   // Liverpool Red
+  { color: "#00967F", label: "Tim  " },     // Liverpool Aqua
+  { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
+  { color: "#D00027", label: "Adam  " },    // Liverpool Red
+  { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
+  { color: "#FEE942", label: "Nick  " },    // Liverpool Gold
+];
 
 // Team meeting taggers
 const teamMeetingTagSectors = [
-  { color: "#B03A2E", label: "Damian  " },  // Festive Red
-  { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
-  { color: "#1ABC9C", label: "Phil  " },    // Festive Green
-  { color: "#27AE60", label: "Rosie  " },   // Christmas Tree Green
-  { color: "#F39C12", label: "Tim  " },     // Gold
-  { color: "#D35400", label: "Devon  " },   // Warm Orange
+  { color: "#D00027", label: "Damian  " },  // Liverpool Red
+  { color: "#00967F", label: "Jay  " },     // Liverpool Aqua
+  { color: "#FEE942", label: "Phil  " },    // Liverpool Gold
+  { color: "#D00027", label: "Rosie  " },   // Liverpool Red
+  { color: "#00967F", label: "Tim  " },     // Liverpool Aqua
+  { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
 ];
 
 // Team meeting developers
 const devSectors = [
-  { color: "#16A085", label: "Adam  " },    // Dark Green
-  { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
-  { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
+  { color: "#D00027", label: "Adam  " },    // Liverpool Red
+  { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
+  { color: "#FEE942", label: "Nick  " },    // Liverpool Gold
 ];
 
 // Only running wheel function after previous presenter is selected
