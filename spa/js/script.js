@@ -174,13 +174,19 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please select a presenter before submitting.");
       return; // Prevent form submission if no presenter is selected
     }
+    // Check if too many presenters chosen
+    if (previousPresenterSelection.length > 8) {
+      // eslint-disable-next-line
+      alert("Too many people selected. Make a new selection.");
+      return;
+    }
     // Update window.previousPresenter
     window.previousPresenter = previousPresenterSelection.join();
     console.log("Selected Presenter:", window.previousPresenter);
     // Remove the selected presenter from the tagSectors array
-    const updatedSectors = tagSectors.filter(
-      (sector) => sector.label.trim() !== window.previousPresenter,
-    );
+    const updatedSectors = tagSectors.filter(function (sector) {
+      return !previousPresenterSelection.includes(sector.label.trim());
+    });
     // Redraw the wheel with updated sectors
     wheelFunction(updatedSectors, "#spin1", "#wheel1");
     // Reset previous presenter

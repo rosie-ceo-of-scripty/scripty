@@ -26,7 +26,7 @@ nav {
 .wheel {
     display: block;
     position: relative;
-    overflow: hidden;
+    overflow: initial;
     margin: 25px;
   }
 
@@ -115,7 +115,7 @@ nav {
 
 /* Headings */
 h1 {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 700;
   margin-bottom: 16px;
   color: #000;

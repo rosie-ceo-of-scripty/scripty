@@ -71,7 +71,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     ctx.rotate(ang + arc / 2);
     ctx.textAlign = "right";
     ctx.fillStyle = "#fff";
-    ctx.font = "bold 30px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+    ctx.font = "bold 24px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     ctx.fillText(sector.label, rad - 10, 10);
     ctx.restore();
   };
@@ -156,11 +156,28 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please select a presenter before submitting.");
       return; // Prevent form submission if no presenter is selected
     }
-    // Check if too many presenters have been selected
-    if (previousPresenterSelection.length > 2) {
+    if (previousPresenterSelection.length > 8) {
       // eslint-disable-next-line
-      alert("Too many presenters selected. Select one tagger and one member of the development team.");
+      alert("Too many presenters selected. No-one can present.");
       return;
+    }
+    // On team meeting page
+    if(window.location.pathname.includes("/team-meeting")){
+      if(previousPresenterSelection.length >= 3) {
+        var devTeam = ["Adam", "Mykola", "Nick"];
+        var taggingTeam = ["Damian", "Devon", "Jay", "Phil", "Rosie", "Tim"];
+        var allDevSelected = devTeam.every(function(name) {
+          return previousPresenterSelection.includes(name);
+        });
+        var allTaggingSelected = taggingTeam.every(function(name) {
+          return previousPresenterSelection.includes(name);
+        });
+        if(allDevSelected || allTaggingSelected){
+          // eslint-disable-next-line
+          alert("No-one can present from either the dev team or tagging team. Make a new selection.");
+          return;
+        }
+      }
     }
     // Remove the selected presenter from the tagSectors array
     const updatedTagSectors = tagSectors.filter(function (sector) {
