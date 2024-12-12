@@ -103,7 +103,8 @@ nav {
 }
 
 /* Center alignment for containers */
-#formContainer {
+#formContainer,
+.formContainer {
   text-align: center;
   padding: 20px;
   background-color: #ffffff; /* White background for contrast */
