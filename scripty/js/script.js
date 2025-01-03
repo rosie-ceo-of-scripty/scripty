@@ -22,7 +22,7 @@ const tagSectors = [
   { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
   { color: "#D00027", label: "Adam  " },    // Liverpool Red
   { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
-  { color: "#FEE942", label: "Nick  " },    // Liverpool Gold
+  { color: "#FEE942", label: "Kris  " },    // Liverpool Gold
 ];
 
 // Team meeting taggers
@@ -39,7 +39,7 @@ const teamMeetingTagSectors = [
 const devSectors = [
   { color: "#D00027", label: "Adam  " },    // Liverpool Red
   { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
-  { color: "#FEE942", label: "Nick  " },    // Liverpool Gold
+  { color: "#FEE942", label: "Kris  " },    // Liverpool Gold
 ];
 
 // Only running wheel function after previous presenter is selected
