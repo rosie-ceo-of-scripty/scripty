@@ -188,7 +188,7 @@ button, a.button {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-image: url('/images/home-white.png');
+  background-image: url('/scripty/images/home-white.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
