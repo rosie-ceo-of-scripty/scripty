@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // On team meeting page
     if(window.location.pathname.includes("/team-meeting")){
       if(previousPresenterSelection.length >= 3) {
-        var devTeam = ["Adam", "Mykola", "Nick"];
+        var devTeam = ["Adam", "Mykola", "Kris"];
         var taggingTeam = ["Damian", "Devon", "Jay", "Phil", "Rosie", "Tim"];
         var allDevSelected = devTeam.every(function(name) {
           return previousPresenterSelection.includes(name);
