@@ -1,5 +1,5 @@
 body {
-  background-image: url("/scripty/images/tp-tools-alive.webp");
+  background-image: url("../images/tp-tools-alive.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -187,7 +187,7 @@ button, a.button {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-image: url('/scripty/images/home.png');
+  background-image: url('../images/home.png');
   background-size: cover;
   background-repeat: no-repeat;
 }

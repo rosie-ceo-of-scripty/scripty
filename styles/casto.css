@@ -1,5 +1,5 @@
 body {
-  background-image: url("/scripty/images/castorama-tools-alive.webp");
+  background-image: url("../images/castorama-tools-alive.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -188,7 +188,7 @@ button, a.button {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-image: url('/scripty/images/home-white.png');
+  background-image: url('../images/home-white.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
