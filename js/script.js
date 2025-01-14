@@ -1,28 +1,15 @@
-/* eslint-disable curly */
-/* NORMAL COLOURS | Temp changed to Nick's colours. Uncomment and remove Nick's below section to revert
+/* New colours for the wheel */
 const tagSectors = [
-  { color: "#B03A2E", label: "Damian  " },  // Festive Red
-  { color: "#C0392B", label: "Jay  " },     // Deep Holiday Red
-  { color: "#1ABC9C", label: "Phil  " },    // Festive Green
-  { color: "#27AE60", label: "Rosie  " },   // Christmas Tree Green
-  { color: "#F39C12", label: "Tim  " },     // Gold
-  { color: "#D35400", label: "Devon  " },   // Warm Orange
-  { color: "#16A085", label: "Adam  " },    // Dark Green
-  { color: "#F1C40F", label: "Mykola  " },  // Bright Gold
-  { color: "#9B59B6", label: "Nick  " },    // Purple (to contrast, for elegance)
-];
-NORMAL COLOURS END */
-/* Nick's colours for the wheel */
-const tagSectors = [
-  { color: "#D00027", label: "Damian  " },  // Liverpool Red
-  { color: "#00967F", label: "Jay  " },     // Liverpool Aqua
-  { color: "#FEE942", label: "Phil  " },    // Liverpool Gold
-  { color: "#D00027", label: "Rosie  " },   // Liverpool Red
-  { color: "#00967F", label: "Tim  " },     // Liverpool Aqua
-  { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
-  { color: "#D00027", label: "Adam  " },    // Liverpool Red
-  { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
-  { color: "#FEE942", label: "Kris  " },    // Liverpool Gold
+  { color: "#000000", label: "Damian  " },  // Black
+  { color: "#870202", label: "Jay  " },     // Dark Dark Dark Red
+  { color: "#A50606", label: "Phil  " },    // Dark Dark Red
+  { color: "#C90404", label: "Rosie  " },   // Dark Red
+  { color: "#E70303", label: "Tim  " },     // Red
+  { color: "#000000", label: "Devon  " },   // Black
+  { color: "#870202", label: "Adam  " },    // Dark Dark Dark Red
+  { color: "#A50606", label: "Mykola  " },  // Dark Dark Red
+  { color: "#C90404", label: "Kris  " },    // Dark Red
+  { color: "#E70303", label: "Imola  " },    // Red  
 ];
 
 // Team meeting taggers
@@ -39,7 +26,8 @@ const teamMeetingTagSectors = [
 const devSectors = [
   { color: "#D00027", label: "Adam  " },    // Liverpool Red
   { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
-  { color: "#FEE942", label: "Kris  " },    // Liverpool Gold
+  { color: "#FEE942", label: "Kris  " },
+  { color: '#FEE942', label: "Imola  " }   // Liverpool Gold
 ];
 
 // Only running wheel function after previous presenter is selected
