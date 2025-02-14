@@ -11,7 +11,12 @@
         </nav>
         <div id="content">
             <div id="formContainer">
-                <h1>Step 1: Who just led the Stand Up and who isn't in tomorrow?</h1>
+                <h1>Step 1: Who just led the Stand Up and who isn't in <span id="day-message"></span>?</h1>
+                <script>
+                    var today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday, 6 = Saturday
+                    var message = today === 5 ? "Monday" : "tomorrow"; // If Friday, show Monday, otherwise show tomorrow
+                    document.getElementById("day-message").textContent = message;
+                </script>
                 <p>Select using the checkboxes below.</p>
                     <div>
                         <form id="previousPresenter">
