@@ -1,4 +1,7 @@
 /* New colours for the wheel */
+
+
+/* TEMP REMOVING TO TRY COLOUR CYCLER
 const tagSectors = [
   { color: "#000000", label: "Damian  " },  // Black
   { color: "#870202", label: "Jay  " },     // Dark Dark Dark Red
@@ -11,6 +14,55 @@ const tagSectors = [
   { color: "#C90404", label: "Kris  " },    // Dark Red
   { color: "#E70303", label: "Imola  " },    // Red  
 ];
+*/
+
+
+
+// Colour Cycler
+// Define your three alternating colors
+const colors = ["#FF5733", "#33FF57", "#3357FF"]; // Change these to your preferred colors
+
+// Labels for the wheel
+const tagSectors = [
+  { label: "Damian" },
+  { label: "Jay" },
+  { label: "Phil" },
+  { label: "Rosie" },
+  { label: "Tim" },
+  { label: "Devon" },
+  { label: "Adam" },
+  { label: "Mykola" },
+  { label: "Kris" },
+  { label: "Imola" }
+];
+
+// Assign colors in an alternating pattern
+tagSectors.forEach((sector, index) => {
+  sector.color = colors[index % colors.length]; // Cycles through the 3 colors
+});
+
+// Log to verify
+console.log(tagSectors);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Team meeting taggers
 const teamMeetingTagSectors = [
