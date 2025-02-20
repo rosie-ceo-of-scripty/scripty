@@ -20,7 +20,7 @@ const tagSectors = [
 
 // Colour Cycler
 // Define your three alternating colors
-const colors = ["#FF5733", "#33FF57", "#3357FF"]; // Change these to your preferred colors
+const colors = ["#fdfad4", "#ffe3a0", "#ffcf5c"]; // Change these to your preferred colors
 
 // Labels for the wheel
 const tagSectors = [
