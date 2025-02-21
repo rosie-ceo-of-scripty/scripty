@@ -1,23 +1,6 @@
 /* New colours for the wheel */
 
 
-/* TEMP REMOVING TO TRY COLOUR CYCLER
-const tagSectors = [
-  { color: "#000000", label: "Damian  " },  // Black
-  { color: "#870202", label: "Jay  " },     // Dark Dark Dark Red
-  { color: "#A50606", label: "Phil  " },    // Dark Dark Red
-  { color: "#C90404", label: "Rosie  " },   // Dark Red
-  { color: "#E70303", label: "Tim  " },     // Red
-  { color: "#000000", label: "Devon  " },   // Black
-  { color: "#870202", label: "Adam  " },    // Dark Dark Dark Red
-  { color: "#A50606", label: "Mykola  " },  // Dark Dark Red
-  { color: "#C90404", label: "Kris  " },    // Dark Red
-  { color: "#E70303", label: "Imola  " },    // Red  
-];
-*/
-
-
-
 // Colour Cycler
 // Define your three alternating colors
 const colors = ["#fdfad4", "#ffe3a0", "#ffcf5c"]; // Change these to your preferred colors
@@ -41,46 +24,30 @@ tagSectors.forEach((sector, index) => {
   sector.color = colors[index % colors.length]; // Cycles through the 3 colors
 });
 
-// Log to verify
-console.log(tagSectors);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Team meeting taggers
 const teamMeetingTagSectors = [
-  { color: "#D00027", label: "Damian  " },  // Liverpool Red
-  { color: "#00967F", label: "Jay  " },     // Liverpool Aqua
-  { color: "#FEE942", label: "Phil  " },    // Liverpool Gold
-  { color: "#D00027", label: "Rosie  " },   // Liverpool Red
-  { color: "#00967F", label: "Tim  " },     // Liverpool Aqua
-  { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
+  { label: "Damian" },
+  { label: "Jay" },
+  { label: "Phil" },
+  { label: "Rosie" },
+  { label: "Tim" },
+  { label: "Devon" }
 ];
 
-// Team meeting developers
+teamMeetingTagSectors.forEach((sector, index) => {
+  sector.color = colors[index % colors.length];
+})
+
 const devSectors = [
-  { color: "#D00027", label: "Adam  " },    // Liverpool Red
-  { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
-  { color: "#FEE942", label: "Kris  " },
-  { color: '#FEE942', label: "Imola  " }   // Liverpool Gold
+  { label: "Adam" },
+  { label: "Mykola" },
+  { label: "Kris" },
+  { label: "Imola" }
 ];
+
+devSectors.forEach((sector, index) => {
+  sector.color = colors[index % colors.length];
+})
+
 
 // Only running wheel function after previous presenter is selected
 // wheelFunction(tagSectors, "#spin1", "#wheel1");
@@ -124,7 +91,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     ctx.translate(rad, rad);
     ctx.rotate(ang + arc / 2);
     ctx.textAlign = "right";
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#000";
     ctx.font = "bold 24px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     ctx.fillText(sector.label, rad - 10, 10);
     ctx.restore();
