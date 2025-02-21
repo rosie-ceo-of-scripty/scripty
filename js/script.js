@@ -1,7 +1,50 @@
-/* New colours for the wheel */
+/*
+--------------------------- Connecting to out selection history databse ---------------------------
+*/
+const publicDatabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFidWRhamdpbnVxYWlnY2xkcnNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNDQxMDgsImV4cCI6MjA1NTcyMDEwOH0.x8qkcmQP7Ll6IKN4o_1eaCdzlOh9bIJe772dEsmMtPo";
+const databaseUrl = "https://qbudajginuqaigcldrsb.supabase.co";
 
 
-// Colour Cycler
+// Create a client to the Database
+const dbClient = supabase.createClient(databaseUrl, publicDatabaseKey);
+
+// Creating a function that returns requested columns from the database.
+async function fetchRows(table_name, table_columns) {
+  // Query data from a specific table
+  let { data, error } = await dbClient
+    .from(table_name) // Replace with your table name
+    .select(table_columns); // Select all columns
+
+  if (error) {
+    console.error("Error fetching data:", error);
+    return;
+  }
+  return data;
+}
+
+// Call the selections table, and prepare a flag variable to let us know when it's done
+let selectionList;
+let selectionFlag = false;
+fetchRows("selections", "*").then(data => {
+  selectionList = data;
+  selectionFlag = true;
+});
+
+
+// A function that will keep running until the data is ready
+const readyCheck = setInterval(() => {
+  if(selectionFlag){
+    console.log("Selection list is ready!");
+    clearInterval(readyCheck);
+  }else{
+    console.log("Selection list is not ready.");
+  }
+}, 500);
+
+/*
+--------------------------- Setting the Colours for Selection Wheels ---------------------------
+*/
+
 // Define your three alternating colors
 const colors = ["#fdfad4", "#ffe3a0", "#ffcf5c"]; // Change these to your preferred colors
 
@@ -48,6 +91,9 @@ devSectors.forEach((sector, index) => {
   sector.color = colors[index % colors.length];
 })
 
+/*
+--------------------------- Defining the Wheel Mechanics ---------------------------
+*/
 
 // Only running wheel function after previous presenter is selected
 // wheelFunction(tagSectors, "#spin1", "#wheel1");
@@ -159,7 +205,10 @@ function wheelFunction(sectors, buttonId, canvasId) {
   rotate(); // Initial rotation
 }
 
-// PREVIOUS PRESENTERS
+/*
+--------------------------- Select Previous Presenter ---------------------------
+*/
+
 // Getting selection from radio buttons
 document.addEventListener("DOMContentLoaded", function () {
   // Function to handle selecting wheel
