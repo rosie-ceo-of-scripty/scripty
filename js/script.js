@@ -1,5 +1,14 @@
 /*
---------------------------- Connecting to out selection history databse ---------------------------
+--------------------------- Setting a variable to store the results of Scripty, and setting an event listener for when it's populated ---------------------------
+*/
+
+var userSelected;
+document.addEventListener("presenterSelected", function(){
+  console.log("Next presenter selected, they are " + userSelected);
+});
+
+/*
+--------------------------- Connecting to out selection history database ---------------------------
 */
 const publicDatabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFidWRhamdpbnVxYWlnY2xkcnNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNDQxMDgsImV4cCI6MjA1NTcyMDEwOH0.x8qkcmQP7Ll6IKN4o_1eaCdzlOh9bIJe772dEsmMtPo";
 const databaseUrl = "https://qbudajginuqaigcldrsb.supabase.co";
@@ -25,21 +34,31 @@ async function fetchRows(table_name, table_columns) {
 // Call the selections table, and prepare a flag variable to let us know when it's done
 let selectionList;
 let selectionFlag = false;
-fetchRows("selections", "*").then(data => {
+fetchRows("selections_sum_view", "*").then(data => {
   selectionList = data;
   selectionFlag = true;
 });
 
 
-// A function that will keep running until the data is ready
+// A function that will keep running until the data from the database is ready
 const readyCheck = setInterval(() => {
   if(selectionFlag){
+    const event = new CustomEvent("previousSelectionsLoaded",
+      {
+        detail: { data: "The scripty selection history is available."}
+      });
+    document.dispatchEvent(event);
     console.log("Selection list is ready!");
     clearInterval(readyCheck);
   }else{
     console.log("Selection list is not ready.");
   }
 }, 500);
+
+// An event listener that prints what's been selected to the console when it's ready
+document.addEventListener("previousSelectionsLoaded", function(){
+  console.log("Scripty selection history is: " + JSON.stringify(selectionList));
+});
 
 /*
 --------------------------- Setting the Colours for Selection Wheels ---------------------------
@@ -150,6 +169,13 @@ function wheelFunction(sectors, buttonId, canvasId) {
     if (!isSpinning) {
       // Update text when finished spinning
       elSpin.textContent = sector.label.trim(); // Show the name of the selected sector
+      userSelected = sector.label.trim();
+      console.log("The selected user is " + userSelected);
+      const event = new CustomEvent("presenterSelected",
+        {
+          detail: { data: "Today's presenter has been selected"}
+        });
+      document.dispatchEvent(event);
     } else {
       // Update text to the sector label while spinning
       elSpin.textContent = sector.label.trim();
@@ -284,3 +310,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adding event listeners to button on submitting previous presenter
   document.getElementById("submitPresenter").addEventListener("click", previousPresenterSelection);
 });
+
+
+/*
+--------------------------- Button to Submit Selected Presenter ---------------------------
+*/
