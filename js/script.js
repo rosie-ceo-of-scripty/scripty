@@ -1,24 +1,69 @@
-/* New colours for the wheel */
-
-
-/* TEMP REMOVING TO TRY COLOUR CYCLER
-const tagSectors = [
-  { color: "#000000", label: "Damian  " },  // Black
-  { color: "#870202", label: "Jay  " },     // Dark Dark Dark Red
-  { color: "#A50606", label: "Phil  " },    // Dark Dark Red
-  { color: "#C90404", label: "Rosie  " },   // Dark Red
-  { color: "#E70303", label: "Tim  " },     // Red
-  { color: "#000000", label: "Devon  " },   // Black
-  { color: "#870202", label: "Adam  " },    // Dark Dark Dark Red
-  { color: "#A50606", label: "Mykola  " },  // Dark Dark Red
-  { color: "#C90404", label: "Kris  " },    // Dark Red
-  { color: "#E70303", label: "Imola  " },    // Red  
-];
+/*
+--------------------------- Setting a variable to store the results of Scripty, and setting an event listener for when it's populated ---------------------------
 */
 
+var userSelected;
+document.addEventListener("presenterSelected", function(){
+  console.log("Next presenter selected, they are " + userSelected);
+});
+
+/*
+--------------------------- Connecting to out selection history database ---------------------------
+*/
+const publicDatabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFidWRhamdpbnVxYWlnY2xkcnNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNDQxMDgsImV4cCI6MjA1NTcyMDEwOH0.x8qkcmQP7Ll6IKN4o_1eaCdzlOh9bIJe772dEsmMtPo";
+const databaseUrl = "https://qbudajginuqaigcldrsb.supabase.co";
 
 
-// Colour Cycler
+// Create a client to the Database
+const dbClient = supabase.createClient(databaseUrl, publicDatabaseKey);
+
+// Creating a function that returns requested columns from the database.
+async function fetchRows(table_name, table_columns) {
+  // Query data from a specific table
+  let { data, error } = await dbClient
+    .from(table_name) // Replace with your table name
+    .select(table_columns); // Select all columns
+
+  if (error) {
+    console.error("Error fetching data:", error);
+    return;
+  }
+  return data;
+}
+
+// Call the selections table, and prepare a flag variable to let us know when it's done
+let selectionList;
+let selectionFlag = false;
+fetchRows("selections_sum_view", "*").then(data => {
+  selectionList = data;
+  selectionFlag = true;
+});
+
+
+// A function that will keep running until the data from the database is ready
+const readyCheck = setInterval(() => {
+  if(selectionFlag){
+    const event = new CustomEvent("previousSelectionsLoaded",
+      {
+        detail: { data: "The scripty selection history is available."}
+      });
+    document.dispatchEvent(event);
+    console.log("Selection list is ready!");
+    clearInterval(readyCheck);
+  }else{
+    console.log("Selection list is not ready.");
+  }
+}, 500);
+
+// An event listener that prints what's been selected to the console when it's ready
+document.addEventListener("previousSelectionsLoaded", function(){
+  console.log("Scripty selection history is: " + JSON.stringify(selectionList));
+});
+
+/*
+--------------------------- Setting the Colours for Selection Wheels ---------------------------
+*/
+
 // Define your three alternating colors
 const colors = ["#fdfad4", "#ffe3a0", "#ffcf5c"]; // Change these to your preferred colors
 
@@ -41,46 +86,33 @@ tagSectors.forEach((sector, index) => {
   sector.color = colors[index % colors.length]; // Cycles through the 3 colors
 });
 
-// Log to verify
-console.log(tagSectors);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Team meeting taggers
 const teamMeetingTagSectors = [
-  { color: "#D00027", label: "Damian  " },  // Liverpool Red
-  { color: "#00967F", label: "Jay  " },     // Liverpool Aqua
-  { color: "#FEE942", label: "Phil  " },    // Liverpool Gold
-  { color: "#D00027", label: "Rosie  " },   // Liverpool Red
-  { color: "#00967F", label: "Tim  " },     // Liverpool Aqua
-  { color: "#FEE942", label: "Devon  " },   // Liverpool Gold
+  { label: "Damian" },
+  { label: "Jay" },
+  { label: "Phil" },
+  { label: "Rosie" },
+  { label: "Tim" },
+  { label: "Devon" }
 ];
 
-// Team meeting developers
+teamMeetingTagSectors.forEach((sector, index) => {
+  sector.color = colors[index % colors.length];
+})
+
 const devSectors = [
-  { color: "#D00027", label: "Adam  " },    // Liverpool Red
-  { color: "#00967F", label: "Mykola  " },  // Liverpool Aqua
-  { color: "#FEE942", label: "Kris  " },
-  { color: '#FEE942', label: "Imola  " }   // Liverpool Gold
+  { label: "Adam" },
+  { label: "Mykola" },
+  { label: "Kris" },
+  { label: "Imola" }
 ];
+
+devSectors.forEach((sector, index) => {
+  sector.color = colors[index % colors.length];
+})
+
+/*
+--------------------------- Defining the Wheel Mechanics ---------------------------
+*/
 
 // Only running wheel function after previous presenter is selected
 // wheelFunction(tagSectors, "#spin1", "#wheel1");
@@ -124,7 +156,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     ctx.translate(rad, rad);
     ctx.rotate(ang + arc / 2);
     ctx.textAlign = "right";
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#000";
     ctx.font = "bold 24px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
     ctx.fillText(sector.label, rad - 10, 10);
     ctx.restore();
@@ -137,6 +169,13 @@ function wheelFunction(sectors, buttonId, canvasId) {
     if (!isSpinning) {
       // Update text when finished spinning
       elSpin.textContent = sector.label.trim(); // Show the name of the selected sector
+      userSelected = sector.label.trim();
+      console.log("The selected user is " + userSelected);
+      const event = new CustomEvent("presenterSelected",
+        {
+          detail: { data: "Today's presenter has been selected"}
+        });
+      document.dispatchEvent(event);
     } else {
       // Update text to the sector label while spinning
       elSpin.textContent = sector.label.trim();
@@ -192,7 +231,10 @@ function wheelFunction(sectors, buttonId, canvasId) {
   rotate(); // Initial rotation
 }
 
-// PREVIOUS PRESENTERS
+/*
+--------------------------- Select Previous Presenter ---------------------------
+*/
+
 // Getting selection from radio buttons
 document.addEventListener("DOMContentLoaded", function () {
   // Function to handle selecting wheel
@@ -268,3 +310,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adding event listeners to button on submitting previous presenter
   document.getElementById("submitPresenter").addEventListener("click", previousPresenterSelection);
 });
+
+
+/*
+--------------------------- Button to Submit Selected Presenter ---------------------------
+*/
