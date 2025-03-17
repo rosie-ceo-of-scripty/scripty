@@ -64,52 +64,51 @@ document.addEventListener("previousSelectionsLoaded", function(){
 --------------------------- Setting the Colours for Selection Wheels ---------------------------
 */
 
-// Define your three alternating colors
-const colors = ["#fdfad4", "#ffe3a0", "#ffcf5c"]; // Change these to your preferred colors
+// Function to create a random dark hex code
+function getHex() {
+  var r, g, b;
+  
+  // Keep generating colours until a dark one is found
+  do {
+      r = Math.floor(Math.random() * 128); // Limit to darker range (0-127)
+      g = Math.floor(Math.random() * 128);
+      b = Math.floor(Math.random() * 128);
+  } while ((r * 0.299 + g * 0.587 + b * 0.114) > 130); // Ensure it's dark enough
 
-// Labels for the wheel
+  // Convert to hex
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
 const tagSectors = [
-  { label: "Damian" },
-  { label: "Jay" },
-  { label: "Phil" },
-  { label: "Rosie" },
-  { label: "Tim" },
-  { label: "Devon" },
-  { label: "Adam" },
-  { label: "Mykola" },
-  { label: "Kris" },
-  { label: "Imola" }
+  { color: getHex(), label: "Damian  " },  // Black
+  { color: getHex(), label: "Jay  " },     // Dark Dark Dark Red
+  { color: getHex(), label: "Phil  " },    // Dark Dark Red
+  { color: getHex(), label: "Rosie  " },   // Dark Red
+  { color: getHex(), label: "Tim  " },     // Red
+  { color: getHex(), label: "Devon  " },   // Black
+  { color: getHex(), label: "Adam  " },    // Dark Dark Dark Red
+  { color: getHex(), label: "Mykola  " },  // Dark Dark Red
+  { color: getHex(), label: "Kris  " },    // Dark Red
+  { color: getHex(), label: "Imola  " },    // Red  
 ];
 
-// Assign colors in an alternating pattern
-tagSectors.forEach((sector, index) => {
-  sector.color = colors[index % colors.length]; // Cycles through the 3 colors
-});
-
+// Team meeting taggers
 const teamMeetingTagSectors = [
-  { label: "Damian" },
-  { label: "Jay" },
-  { label: "Phil" },
-  { label: "Rosie" },
-  { label: "Tim" },
-  { label: "Devon" }
+  { color: getHex(), label: "Damian  " },  // Liverpool Red
+  { color: getHex(), label: "Jay  " },     // Liverpool Aqua
+  { color: getHex(), label: "Phil  " },    // Liverpool Gold
+  { color: getHex(), label: "Rosie  " },   // Liverpool Red
+  { color: getHex(), label: "Tim  " },     // Liverpool Aqua
+  { color: getHex(), label: "Devon  " },   // Liverpool Gold
 ];
 
-teamMeetingTagSectors.forEach((sector, index) => {
-  sector.color = colors[index % colors.length];
-})
-
+// Team meeting developers
 const devSectors = [
-  { label: "Adam" },
-  { label: "Mykola" },
-  { label: "Kris" },
-  { label: "Imola" }
+  { color: getHex(), label: "Adam  " },    // Liverpool Red
+  { color: getHex(), label: "Mykola  " },  // Liverpool Aqua
+  { color: getHex(), label: "Kris  " },
+  { color: getHex(), label: "Imola  " },   // Liverpool Gold
 ];
-
-devSectors.forEach((sector, index) => {
-  sector.color = colors[index % colors.length];
-})
-
 /*
 --------------------------- Defining the Wheel Mechanics ---------------------------
 */
@@ -156,8 +155,8 @@ function wheelFunction(sectors, buttonId, canvasId) {
     ctx.translate(rad, rad);
     ctx.rotate(ang + arc / 2);
     ctx.textAlign = "right";
-    ctx.fillStyle = "#000";
     ctx.font = "bold 24px 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif";
+    ctx.fillStyle = "#fff";
     ctx.fillText(sector.label, rad - 10, 10);
     ctx.restore();
   };
