@@ -79,36 +79,47 @@ function getHex() {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
-const tagSectors = [
-  { color: getHex(), label: "Damian  " },  // Black
-  { color: getHex(), label: "Jay  " },     // Dark Dark Dark Red
-  { color: getHex(), label: "Phil  " },    // Dark Dark Red
-  { color: getHex(), label: "Rosie  " },   // Dark Red
-  { color: getHex(), label: "Tim  " },     // Red
-  { color: getHex(), label: "Devon  " },   // Black
-  { color: getHex(), label: "Adam  " },    // Dark Dark Dark Red
-  { color: getHex(), label: "Mykola  " },  // Dark Dark Red
-  { color: getHex(), label: "Kris  " },    // Dark Red
-  { color: getHex(), label: "Imola  " },    // Red  
-];
+// Function to shuffle the return the array of names but shuffled
+function shuffleArray(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+  }
+  return arr;
+}
+
+const tagSectors = shuffleArray([
+  { color: getHex(), label: "Damian" },
+  { color: getHex(), label: "Jay" },
+  { color: getHex(), label: "Phil" },
+  { color: getHex(), label: "Rosie" },
+  { color: getHex(), label: "Tim" },
+  { color: getHex(), label: "Devon" },
+  { color: getHex(), label: "Adam" },
+  { color: getHex(), label: "Mykola" },
+  { color: getHex(), label: "Kris" },
+  { color: getHex(), label: "Imola" },
+]);
 
 // Team meeting taggers
-const teamMeetingTagSectors = [
+const teamMeetingTagSectors = shuffleArray([
   { color: getHex(), label: "Damian  " },  // Liverpool Red
   { color: getHex(), label: "Jay  " },     // Liverpool Aqua
   { color: getHex(), label: "Phil  " },    // Liverpool Gold
   { color: getHex(), label: "Rosie  " },   // Liverpool Red
   { color: getHex(), label: "Tim  " },     // Liverpool Aqua
   { color: getHex(), label: "Devon  " },   // Liverpool Gold
-];
+]);
 
 // Team meeting developers
-const devSectors = [
+const devSectors = shuffleArray([
   { color: getHex(), label: "Adam  " },    // Liverpool Red
   { color: getHex(), label: "Mykola  " },  // Liverpool Aqua
   { color: getHex(), label: "Kris  " },
   { color: getHex(), label: "Imola  " },   // Liverpool Gold
-];
+]);
 /*
 --------------------------- Defining the Wheel Mechanics ---------------------------
 */
