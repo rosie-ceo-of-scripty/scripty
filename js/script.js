@@ -202,8 +202,15 @@ function wheelFunction(sectors, buttonId, canvasId) {
     }
     elSpin.style.background = sector.color; // Update background color based on current sector
   };
-
   const frame = () => {
+    // Random acceleration
+    function randomAcc() {
+      var min = 1.02;
+      var max = 1.25;
+      var random = Math.random() * (max - min) + min;
+      return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
+    }
+    var acc = randomAcc();
     if (!isSpinning) return;
 
     if (angVel >= angVelMax) isAccelerating = false;
@@ -212,14 +219,8 @@ function wheelFunction(sectors, buttonId, canvasId) {
     if (isAccelerating) {
       angVel ||= angVelMin; // Initial velocity kick
       // Random acceleration value
-      function randomAcc() {
-        var min = 1.02;
-        var max = 1.25;
-        var random = Math.random() * (max - min) + min;
-        return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
-      }
-      console.log("Wheel acceleration", randomAcc());
-      angVel *= randomAcc(); // Accelerate
+      console.log("Wheel acceleration", acc);
+      angVel *= acc; // Accelerate
     } else {
       // Decelerate
       angVel *= friction; // Decelerate by friction
