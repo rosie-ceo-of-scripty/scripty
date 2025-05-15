@@ -141,7 +141,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
   const arc = TAU / tot;
   function getRandomSteppedDecimal() {
     var steps = [];
-    for (var i = 0.40; i <= 0.90; i += 0.10) {
+    for (var i = 0.30; i <= 0.90; i += 0.10) {
       steps.push(parseFloat(i.toFixed(2)));
     }
     var random_index = Math.floor(Math.random() * steps.length);
