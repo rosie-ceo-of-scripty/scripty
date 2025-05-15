@@ -210,6 +210,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
   }
   var acc = randomAcc();
+  console.log("Wheel acceleration", acc);
   const frame = () => {
     if (!isSpinning) return;
 
@@ -219,7 +220,6 @@ function wheelFunction(sectors, buttonId, canvasId) {
     if (isAccelerating) {
       angVel ||= angVelMin; // Initial velocity kick
       // Random acceleration value
-      console.log("Wheel acceleration", acc);
       angVel *= acc; // Accelerate
     } else {
       // Decelerate
