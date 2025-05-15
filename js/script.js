@@ -126,11 +126,11 @@ const devSectors = shuffleArray([
 
 // Only running wheel function after previous presenter is selected
 // wheelFunction(tagSectors, "#spin1", "#wheel1");
+// Setting friction level globally
 
 function wheelFunction(sectors, buttonId, canvasId) {
   // Generate random float in range min-max:
   const rand = (m, M) => Math.random() * (M - m) + m;
-
   const tot = sectors.length;
   const elSpin = document.querySelector(buttonId);
   const ctx = document.querySelector(canvasId).getContext`2d`;
@@ -140,8 +140,8 @@ function wheelFunction(sectors, buttonId, canvasId) {
   const TAU = 2 * PI;
   const arc = TAU / tot;
   function getRandomDecimal() {
-    return parseFloat((Math.random() * (0.98 - 0.88) + 0.88).toFixed(2));
-  }  
+    return parseFloat((Math.random() * (0.98 - 0.55) + 0.55).toFixed(2));
+  }
   const friction = getRandomDecimal(); // Increased friction for faster deceleration
   console.log("Friction", friction);
   const angVelMin = 0.005; // Minimum speed to consider it stopped
