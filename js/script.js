@@ -139,7 +139,11 @@ function wheelFunction(sectors, buttonId, canvasId) {
   const PI = Math.PI;
   const TAU = 2 * PI;
   const arc = TAU / tot;
-  const friction = 0.98; // Increased friction for faster deceleration
+  function getRandomDecimal() {
+    return parseFloat((Math.random() * (0.98 - 0.88) + 0.88).toFixed(2));
+  }  
+  const friction = getRandomDecimal(); // Increased friction for faster deceleration
+  console.log("Friction", friction);
   const angVelMin = 0.005; // Minimum speed to consider it stopped
   let angVelMax = 0; // Random ang.vel. to accelerate to
   let angVel = 0;    // Current angular velocity
