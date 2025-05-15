@@ -202,15 +202,15 @@ function wheelFunction(sectors, buttonId, canvasId) {
     }
     elSpin.style.background = sector.color; // Update background color based on current sector
   };
+  // Random acceleration
+  function randomAcc() {
+    var min = 1.02;
+    var max = 1.25;
+    var random = Math.random() * (max - min) + min;
+    return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
+  }
+  var acc = randomAcc();
   const frame = () => {
-    // Random acceleration
-    function randomAcc() {
-      var min = 1.02;
-      var max = 1.25;
-      var random = Math.random() * (max - min) + min;
-      return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
-    }
-    var acc = randomAcc();
     if (!isSpinning) return;
 
     if (angVel >= angVelMax) isAccelerating = false;
