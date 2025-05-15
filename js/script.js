@@ -244,13 +244,14 @@ function wheelFunction(sectors, buttonId, canvasId) {
     frame();
     animFrame = requestAnimationFrame(engine);
   };
-
+  // Dynamic maximum velocity
+  var max_speed = getRandomSteppedDecimal(0.1, 0.6, 0.05);
   elSpin.addEventListener("click", () => {
     if (isSpinning) return;
     isSpinning = true;
     isAccelerating = true;
-    angVelMax = rand(0.25, 0.40); // Random max speed to accelerate to
-    console.log ("Max speed", angVelMax);
+    angVelMax = max_speed; // Random max speed to accelerate to
+    console.log ("Max speed", max_speed);
     elSpin.textContent = "SPIN";  // Show "SPIN" initially before spinning
     engine(); // Start engine!
   });
