@@ -148,7 +148,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     return steps[random_index];
   }
   
-  const friction = getRandomSteppedDecimal(0.3, 1, 0.05); // Using function above to randomise the wheel friction when each wheel is defined
+  const friction = 1 || getRandomSteppedDecimal(0.3, 1, 0.05); // Using function above to randomise the wheel friction when each wheel is defined
   console.log("Wheel friction level", friction);
   const angVelMin = 0.005; // Minimum speed to consider it stopped
   let angVelMax = 0; // Random ang.vel. to accelerate to
