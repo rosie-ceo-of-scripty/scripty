@@ -139,16 +139,16 @@ function wheelFunction(sectors, buttonId, canvasId) {
   const PI = Math.PI;
   const TAU = 2 * PI;
   const arc = TAU / tot;
-  function getRandomSteppedDecimal() {
+  function getRandomSteppedDecimal(min, max, step) {
     var steps = [];
-    for (var i = 0.30; i <= 0.90; i += 0.20) {
+    for (var i = min; i <= max; i += step) {
       steps.push(parseFloat(i.toFixed(2)));
     }
     var random_index = Math.floor(Math.random() * steps.length);
     return steps[random_index];
   }
   
-  const friction = getRandomSteppedDecimal(); // Using function above to randomise the wheel friction when each wheel is defined
+  const friction = getRandomSteppedDecimal(0.3, 0.9, 0.2); // Using function above to randomise the wheel friction when each wheel is defined
   console.log("Wheel friction level", friction);
   const angVelMin = 0.005; // Minimum speed to consider it stopped
   let angVelMax = 0; // Random ang.vel. to accelerate to
