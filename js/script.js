@@ -211,7 +211,15 @@ function wheelFunction(sectors, buttonId, canvasId) {
     // Accelerate
     if (isAccelerating) {
       angVel ||= angVelMin; // Initial velocity kick
-      angVel *= 1.06; // Accelerate
+      // Random acceleration value
+      function randomAcc() {
+        var min = 1.02;
+        var max = 1.25;
+        var random = Math.random() * (max - min) + min;
+        return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
+      }
+      
+      angVel *= randomAcc(); // Accelerate
     } else {
       // Decelerate
       angVel *= friction; // Decelerate by friction
