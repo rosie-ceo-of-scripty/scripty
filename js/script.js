@@ -126,11 +126,11 @@ const devSectors = shuffleArray([
 
 // Only running wheel function after previous presenter is selected
 // wheelFunction(tagSectors, "#spin1", "#wheel1");
+// Setting friction level globally
 
 function wheelFunction(sectors, buttonId, canvasId) {
   // Generate random float in range min-max:
   const rand = (m, M) => Math.random() * (M - m) + m;
-
   const tot = sectors.length;
   const elSpin = document.querySelector(buttonId);
   const ctx = document.querySelector(canvasId).getContext`2d`;
@@ -139,7 +139,17 @@ function wheelFunction(sectors, buttonId, canvasId) {
   const PI = Math.PI;
   const TAU = 2 * PI;
   const arc = TAU / tot;
-  const friction = 0.98; // Increased friction for faster deceleration
+  function getRandomSteppedDecimal(min, max, step) {
+    var steps = [];
+    for (var i = min; i <= max; i += step) {
+      steps.push(parseFloat(i.toFixed(2)));
+    }
+    var random_index = Math.floor(Math.random() * steps.length);
+    return steps[random_index];
+  }
+  
+  const friction = getRandomSteppedDecimal(0.90, 0.99, 0.01); // Using function above to randomise the wheel friction when each wheel is defined
+  console.log("Wheel friction level", friction);
   const angVelMin = 0.005; // Minimum speed to consider it stopped
   let angVelMax = 0; // Random ang.vel. to accelerate to
   let angVel = 0;    // Current angular velocity
@@ -192,7 +202,15 @@ function wheelFunction(sectors, buttonId, canvasId) {
     }
     elSpin.style.background = sector.color; // Update background color based on current sector
   };
-
+  // Random acceleration
+  function randomAcc() {
+    var min = 1.00;
+    var max = 1.15;
+    var random = Math.random() * (max - min) + min;
+    return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
+  }
+  var acc = randomAcc();
+  console.log("Wheel acceleration", acc);
   const frame = () => {
     if (!isSpinning) return;
 
@@ -201,7 +219,8 @@ function wheelFunction(sectors, buttonId, canvasId) {
     // Accelerate
     if (isAccelerating) {
       angVel ||= angVelMin; // Initial velocity kick
-      angVel *= 1.06; // Accelerate
+      // Random acceleration value
+      angVel *= acc; // Accelerate
     } else {
       // Decelerate
       angVel *= friction; // Decelerate by friction
@@ -225,12 +244,12 @@ function wheelFunction(sectors, buttonId, canvasId) {
     frame();
     animFrame = requestAnimationFrame(engine);
   };
-
   elSpin.addEventListener("click", () => {
     if (isSpinning) return;
     isSpinning = true;
     isAccelerating = true;
-    angVelMax = rand(0.25, 0.40); // Random max speed to accelerate to
+    angVelMax = getRandomSteppedDecimal(0.1, 0.6, 0.05); // Random max speed to accelerate to
+    console.log ("Max speed", angVelMax);
     elSpin.textContent = "SPIN";  // Show "SPIN" initially before spinning
     engine(); // Start engine!
   });
