@@ -204,8 +204,8 @@ function wheelFunction(sectors, buttonId, canvasId) {
   };
   // Random acceleration
   function randomAcc() {
-    var min = 1.00;
-    var max = 1.15;
+    var min = 1.1;
+    var max = 1.2;
     var random = Math.random() * (max - min) + min;
     return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
   }
