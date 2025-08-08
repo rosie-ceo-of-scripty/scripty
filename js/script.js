@@ -248,7 +248,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     if (isSpinning) return;
     isSpinning = true;
     isAccelerating = true;
-    angVelMax = getRandomSteppedDecimal(0.5, 0.6, 0.05); // Random max speed to accelerate to
+    angVelMax = getRandomSteppedDecimal(0.25, 0.4, 0.05); // Random max speed to accelerate to
     console.log ("Max speed", angVelMax);
     elSpin.textContent = "SPIN";  // Show "SPIN" initially before spinning
     engine(); // Start engine!
