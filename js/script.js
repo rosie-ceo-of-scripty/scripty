@@ -157,6 +157,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
   let isSpinning = false;
   let isAccelerating = false;
   let animFrame = null; // Engine's requestAnimationFrame
+  let spinStartTime = null; // When the wheel starts spinning
 
   // Get index of current sector
   const getIndex = () => Math.floor(tot - ang / TAU * tot) % tot;
@@ -243,16 +244,23 @@ function wheelFunction(sectors, buttonId, canvasId) {
   const engine = () => {
     frame();
     animFrame = requestAnimationFrame(engine);
+    if(spinStartTime && Date.now() - spinStartTime > 10000) {
+      console.warn("Force-stopping after 10s");
+      angVel = 0;
+      spinStartTime = null; // Clear spinStartTime to avoid repeated stops
+    }
   };
+  
   elSpin.addEventListener("click", () => {
     if (isSpinning) return;
     isSpinning = true;
     isAccelerating = true;
-    angVelMax = getRandomSteppedDecimal(0.25, 0.4, 0.05); // Random max speed to accelerate to
-    console.log ("Max speed", angVelMax);
-    elSpin.textContent = "SPIN";  // Show "SPIN" initially before spinning
+    angVelMax = getRandomSteppedDecimal(0.25, 0.4, 0.05); // Random max speed
+    console.log("Max speed", angVelMax);
+    elSpin.textContent = "SPIN";
+    spinStartTime = Date.now(); // Set when spin starts
     engine(); // Start engine!
-  });
+  });  
 
   // INIT!
   sectors.forEach(drawSector);
