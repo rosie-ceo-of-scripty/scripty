@@ -148,7 +148,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     return steps[random_index];
   }
   
-  const friction = getRandomSteppedDecimal(0.85, 0.93, 0.01); // Using function above to randomise the wheel friction when each wheel is defined
+  const friction = getRandomSteppedDecimal(0.9, 0.93, 0.01); // Using function above to randomise the wheel friction when each wheel is defined
   console.log("Wheel friction level", friction);
   const angVelMin = 0.005; // Minimum speed to consider it stopped
   let angVelMax = 0; // Random ang.vel. to accelerate to
@@ -204,8 +204,8 @@ function wheelFunction(sectors, buttonId, canvasId) {
   };
   // Random acceleration
   function randomAcc() {
-    var min = 1.00;
-    var max = 1.15;
+    var min = 1.1;
+    var max = 1.2;
     var random = Math.random() * (max - min) + min;
     return parseFloat(random.toFixed(2)); // Limit to 2 decimal places
   }
@@ -248,7 +248,7 @@ function wheelFunction(sectors, buttonId, canvasId) {
     if (isSpinning) return;
     isSpinning = true;
     isAccelerating = true;
-    angVelMax = getRandomSteppedDecimal(0.1, 0.6, 0.05); // Random max speed to accelerate to
+    angVelMax = getRandomSteppedDecimal(0.25, 0.4, 0.05); // Random max speed to accelerate to
     console.log ("Max speed", angVelMax);
     elSpin.textContent = "SPIN";  // Show "SPIN" initially before spinning
     engine(); // Start engine!
@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // On team meeting page
     if(window.location.pathname.includes("/team-meeting")){
       if(previousPresenterSelection.length >= 3) {
-        var devTeam = ["Adam", "Mykola", "Kris"];
+        var devTeam = ["Adam", "Imola", "Mykola", "Kris"];
         var taggingTeam = ["Damian", "Devon", "Jay", "Phil", "Rosie", "Tim"];
         var allDevSelected = devTeam.every(function(name) {
           return previousPresenterSelection.includes(name);
