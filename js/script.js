@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please select a presenter before submitting.");
       return; // Prevent form submission if no presenter is selected
     }
-    if (previousPresenterSelection.length > 8) {
+    if (previousPresenterSelection.length > 9) {
       // eslint-disable-next-line
       alert("Too many presenters selected. No-one can present.");
       return;
