@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /*
 --------------------------- Button to Submit Selected Presenter ---------------------------
 */
-
+/*
 // Automatically selecting Adam's checkbox
 document.addEventListener("DOMContentLoaded", function() {
   var element = document.querySelector("[value='Adam']");
@@ -360,3 +360,4 @@ document.addEventListener("DOMContentLoaded", function() {
       element.checked = true;
   }
 });
+*/
